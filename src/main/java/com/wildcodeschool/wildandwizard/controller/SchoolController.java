@@ -14,7 +14,8 @@ public class SchoolController {
     @GetMapping("/schools")
     public String getAll(Model model) {
 
-        model.addAttribute("schools", repository.findAll());
+
+         model.addAttribute("schools", repository.findAll());
 
         return "school_get_all";
     }
@@ -27,8 +28,9 @@ public class SchoolController {
         return "school_get";
     }
 
-    @GetMapping("/schools/search")
-    public String getByCountry(Model model, @RequestParam String country) {
+
+     @GetMapping("/schools/search")
+     public String getByCountry(Model model, @RequestParam String country) {
 
         model.addAttribute("schools", repository.findByCountry(country));
 
