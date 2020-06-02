@@ -38,5 +38,25 @@
         <input type="submit" value="Send">
     </form>
 </section>
+
+
+<section>
+    <h3>Add a new School:</h3>
+    <br><br>
+    <form action="/schools/create" method="post">
+        <label for="school-name">School name:</label>
+        <input id="school-name" name="schoolName" placeholder="WILD" required type="text">
+
+        <label for="school-capacity">School capacity:</label>
+        <input id="school-capacity" name="schoolCapacity" placeholder="100" required type="text">
+
+        <label for="school-country">School Country:</label>
+        <input id="school-country" name="schoolCountry" placeholder="Bordeaux" required type="text">
+
+
+        <input type="submit" value="SAVE">
+    </form>
+
+</section>
 </body>
 </html>

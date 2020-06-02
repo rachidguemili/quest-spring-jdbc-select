@@ -4,6 +4,7 @@ import com.wildcodeschool.wildandwizard.repository.SchoolRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -35,5 +36,16 @@ public class SchoolController {
         model.addAttribute("schools", repository.findByCountry(country));
 
         return "school_get_all";
+    }
+
+    @PostMapping("/schools/create")
+    public String postSchool(Model model,
+                             @RequestParam String schoolName,
+                             @RequestParam String schoolCountry,
+                             @RequestParam long schoolCapacity)
+
+    {
+        model.addAttribute("school",repository.createSchool(schoolName,schoolCapacity,schoolCountry));
+        return  "school_getSaved";
     }
 }

@@ -128,4 +128,51 @@ public class SchoolRepository {
 
         return null;
     }
+
+    public  School createSchool(String name,long capacity, String country){
+
+        ResultSet resid;
+
+        // on prepare la requete
+        // on execute la requete
+        try {
+
+            connection = DriverManager.getConnection(
+                    DB_URL, DB_USER, DB_PASSWORD
+            );
+
+            System.out.println(" avant query ");
+            String query = "insert into school (name,capacity,country) values (?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1,name);
+            statement.setLong(2,capacity);
+            statement.setString(3,country);
+
+            if (statement.executeUpdate() != 1) {
+                throw new SQLException("failed to insert data");
+            }
+            resid = statement.getGeneratedKeys();
+
+
+            if (resid.next()) {
+                long id = resid.getLong(1);
+                System.out.println("===iddddddddddddd"  + id);
+
+                statement.close();
+                School sc = new School(id,name,capacity,country);
+                System.out.println(sc);
+                return    sc;
+            }
+        }
+        catch (SQLException se)
+        {
+            System.out.println(se);
+        }
+
+          return    null;
+
+    }
+
+
+
 }
